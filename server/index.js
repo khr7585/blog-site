@@ -4,10 +4,13 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import User from "./models/user.js";
 import authRoutes from "./routes/authroutes.js";
+import postRoutes from "./routes/postroutes.js";
 dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
 app.get("/api/health", (req, res) => {
   res.json({ status: "Server is running" });
 });
