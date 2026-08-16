@@ -17,15 +17,15 @@
 //   );
 // }
 
-export default App;
+// export default App;
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import PostDetail from "./pages/PostDetail";
-import CreatePost from "./pages/CreatePost";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Profile from "./pages/Profile";
+import Navbar from "./components/navbar";
+import Home from "./pages/home";
+import PostDetail from "./pages/postdetails";
+import CreatePost from "./pages/createpost";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import Profile from "./pages/profile";
 
 function App() {
   return (
