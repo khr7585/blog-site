@@ -8,9 +8,11 @@ function Navbar() {
     navigate("/login");
   };
   return (
-    <nav style={{ display: "flex", justifyContent: "space-between", padding: "16px", borderBottom: "1px solid #ddd" }}>
-      <Link to="/" style={{ fontWeight: "bold", fontSize: "20px" }}>My Blog</Link>
-      <div style={{ display: "flex", gap: "16px" }}>
+    <nav className="navbar">
+      <Link to="/" className="navbar-brand">
+        My Blog
+      </Link>
+      <div className="navbar-links">
         {user ? (
           <>
             <Link to="/create">New Post</Link>
