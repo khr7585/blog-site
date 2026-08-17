@@ -9,7 +9,7 @@ function Profile() {
     );
 
   return (
-    <div style={{ maxWidth: "500px", margin: "40px auto" }}>
+    <div className="page-container">
       <h2>Profile</h2>
       <p>
         <strong>Name:</strong> {user.name}

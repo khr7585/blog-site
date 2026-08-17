@@ -8,11 +8,12 @@ function PostDetail() {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   useEffect(() => {
     api
       .get(`/posts/${id}`)
       .then((res) => setPost(res.data))
-      .catch((err) => console.error(err))
+      .catch(() => setError("Failed to load this post."))
       .finally(() => setLoading(false));
   }, [id]);
   const handleDelete = async () => {
@@ -37,7 +38,7 @@ function PostDetail() {
 
       {isAuthor && (
         <div style={{ marginTop: "24px" }}>
-          <button onClick={handleDelete} style={{ color: "red" }}>
+          <button onClick={handleDelete} className="btn-danger">
             Delete Post
           </button>
         </div>

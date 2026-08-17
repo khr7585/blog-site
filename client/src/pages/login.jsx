@@ -12,10 +12,24 @@ function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  const validate = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return "Please enter a valid email address";
+    }
+    if (formData.password.length < 1) {
+      return "Password is required";
+    }
+    return "";
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    const validationError = validate();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
     try {
       const res = await api.post("/auth/login", formData);
       login(res.data.user, res.data.token);
