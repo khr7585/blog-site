@@ -6,7 +6,7 @@ import { useAuth } from "../context/authcontext";
 function CreatePost() {
   const [formData, setFormData] = useState({ title: "", content: "", category: "" });
   const [error, setError] = useState("");
-  const { token, user } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   if (!user) {
@@ -21,9 +21,7 @@ function CreatePost() {
     e.preventDefault();
     setError("");
     try {
-      const res = await api.post("/posts", formData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await api.post("/posts", formData);
       navigate(`/post/${res.data._id}`);
     } catch (err) {
       setError(err.response?.data?.message || "Failed to create post");
