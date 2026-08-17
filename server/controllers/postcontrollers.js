@@ -3,7 +3,16 @@ import Post from "../models/post.js";
 export const createPost = async (req, res) => {
   try {
     const { title, content, category, coverImage } = req.body;
-
+    if (!title || title.trim().length < 3) {
+      return res
+        .status(400)
+        .json({ message: "Title must be at least 3 characters" });
+    }
+    if (!content || content.trim().length < 10) {
+      return res
+        .status(400)
+        .json({ message: "Content must be at least 10 characters" });
+    }
     const newPost = await Post.create({
       title,
       content,

@@ -4,6 +4,20 @@ import jwt from "jsonwebtoken";
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    if (!name || name.trim().length < 2) {
+      return res
+        .status(400)
+        .json({ message: "Name must be at least 2 characters" });
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      return res.status(400).json({ message: "Please provide a valid email" });
+    }
+    if (!password || password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
+    }
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Email already registered" });
